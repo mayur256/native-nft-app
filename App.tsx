@@ -1,4 +1,5 @@
 // core lib
+import { ReactElement } from 'react';
 
 // Navigation-Stack
 import { createStackNavigator } from '@react-navigation/stack';
@@ -23,7 +24,7 @@ const theme = {
 }
 
 // Component definition
-export default function App() {
+export default function App(): ReactElement | null {
     const [loaded] = useFonts({
         InterBold: require('./assets/fonts/Inter-Bold.ttf'),
         InterLight: require('./assets/fonts/Inter-Light.ttf'),
@@ -33,7 +34,7 @@ export default function App() {
     })
 
     if (!loaded) return null;
-    
+
     return (
         <NavigationContainer theme={theme}>
             <Stack.Navigator

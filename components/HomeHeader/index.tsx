@@ -3,10 +3,10 @@ import { ReactElement } from 'react';
 import { View, Text } from 'react-native';
 
 // Component definition
-export default function Details(): ReactElement {
+export default function HomeHeader(): ReactElement {
     return (
         <View>
-            <Text>Details Screen</Text>
+            <Text>HomeHeader</Text>
         </View>
     )
 }
