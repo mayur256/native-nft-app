@@ -7,6 +7,7 @@ import { HomeHeader, NFTCard, FocusedStatusBar } from '../components';
 
 // Utils
 import { COLORS, NFTData } from '../utils';
+import { INft } from '../utils/types';
 
 // Component definition
 export default function Home(): ReactElement {
@@ -18,8 +19,8 @@ export default function Home(): ReactElement {
                 <View style={{ zIndex: 0 }}>
                     <FlatList
                         data={NFTData}
-                        renderItem={({ item }: any): ReactElement => <Text>{item.name}</Text>}
-                        keyExtractor={(item) => item.id}
+                        renderItem={({ item }: { item: INft }): ReactElement => <NFTCard data={item} />}
+                        keyExtractor={(item: INft) => item.id}
                         showsVerticalScrollIndicator={false}
                         ListHeaderComponent={<HomeHeader />}
                     />

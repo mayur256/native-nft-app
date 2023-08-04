@@ -1,8 +1,10 @@
+import { ImageSourcePropType } from "react-native/types";
+
 export interface IBid {
     id: string;
     name: string;
     price: number;
-    image: string;
+    image: ImageSourcePropType;
     date: string;
 }
 
@@ -12,6 +14,6 @@ export interface INft {
     creator: string;
     price: number,
     description: string,
-    image: string,
+    image: ImageSourcePropType,
     bids: Array<IBid>
 }
