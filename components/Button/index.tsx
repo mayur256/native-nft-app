@@ -1,6 +1,6 @@
 // core lib
 import { ReactElement } from 'react';
-import { View, Text, Pressable, StyleSheet, Image, ImageSourcePropType } from 'react-native';
+import { Pressable, StyleSheet, Image, ImageSourcePropType } from 'react-native';
 
 // utils
 import { COLORS, SHADOWS, SIZES } from '../../utils';

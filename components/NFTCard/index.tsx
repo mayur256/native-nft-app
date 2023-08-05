@@ -1,15 +1,21 @@
 // core lib
 import { ReactElement } from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 
 // navigation
 import { useNavigation } from '@react-navigation/native';
+
+// Constituent components
+import InfoSummary from '../InfoSummary';
+import { CircleButton } from '../Button';
+import { NftTitle } from '../NftTitle';
+import { EtheriumPrice } from '../EtheriumPrice';
+import { RectButton as BidButton } from '../Button/RectButton';
 
 // utils
 import { COLORS, SIZES, SHADOWS, assets } from '../../utils';
 // types
 import { INft } from '../../utils/types';
-import { CircleButton } from '../Button';
 
 // props type definition
 interface IProps {
@@ -18,6 +24,13 @@ interface IProps {
 
 // Component definition
 export default function NFTCard({ data }: IProps): ReactElement {
+
+    const navigation = useNavigation<any>();
+
+    const onBidPress = () => {
+        navigation.navigate('Details', { data });
+    }
+
     return (
         <View style={styles.cardContainer}>
             <View style={styles.cardImgContainer}>
@@ -26,13 +39,34 @@ export default function NFTCard({ data }: IProps): ReactElement {
                     source={data.image}
                     resizeMode='cover'
                 />
+
+                <CircleButton
+                    imageUrl={assets.heart}
+                    onPress={() => alert('I\'m pressed')}
+                    right={10}
+                    top={10}
+                />
             </View>
-            <CircleButton
-                imageUrl={assets.heart}
-                onPress={() => alert('I\'m pressed')}
-                right={10}
-                top={10}
-            />
+
+            <InfoSummary />
+
+            <View style={styles.titleContainer}>
+                <NftTitle
+                    title={data.name}
+                    caption={data.creator}
+                    titleSize={SIZES.large}
+                    captionSize={SIZES.small}
+                />
+
+                <View style={styles.priceContainer}>
+                    <EtheriumPrice price={data.price} />
+                    <BidButton
+                        minWidth={120}
+                        fontSize={SIZES.font}
+                        onPress={onBidPress}
+                    />
+                </View>
+            </View>
         </View>
     )
 }
@@ -55,5 +89,15 @@ const styles = StyleSheet.create({
         height: '100%',
         borderTopLeftRadius: SIZES.font,
         borderTopRightRadius: SIZES.font
+    },
+    titleContainer: {
+        width: '100%',
+        padding: SIZES.font
+    },
+    priceContainer: {
+        marginTop: SIZES.font,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
     }
 })
