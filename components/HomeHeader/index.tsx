@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         fontFamily: FONTS.bold,
         fontSize: SIZES.large,
         color: COLORS.white,
-        margintop: SIZES.base / 2
+        marginTop: SIZES.base / 2
     },
     searchContainer: {
         width: '100%',
@@ -99,6 +99,6 @@ const styles = StyleSheet.create({
     searchImg: {
         width: 20,
         height: 20,
-        marginright: SIZES.base
+        marginRight: SIZES.base
     }
 })

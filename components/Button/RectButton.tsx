@@ -9,7 +9,7 @@ import { COLORS, FONTS, SHADOWS, SIZES } from '../../utils';
 interface IProps {
     minWidth: number;
     fontSize: any;
-    onPress: () => void;
+    onPress?: () => void;
 }
 
 // Component definition

@@ -7,12 +7,13 @@ import { useIsFocused } from '@react-navigation/core';
 
 // props type definition
 interface IProps {
-    background: string
+    background: string;
+    [x: string]: any
 }
 
 // Component definition
-export default function FocusedStatusBar({ background }: IProps): ReactElement | null {
+export default function FocusedStatusBar({ background, ...rest }: IProps): ReactElement | null {
     const isFocused = useIsFocused();
 
-    return isFocused ? <StatusBar backgroundColor={background} animated={true}  /> : null
+    return isFocused ? <StatusBar backgroundColor={background} animated={true} {...rest} /> : null
 }
