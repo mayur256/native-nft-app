@@ -1,5 +1,5 @@
 // core lib
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 import { View, SafeAreaView, FlatList, Text, StyleSheet } from 'react-native';
 
 // Common components
@@ -11,6 +11,20 @@ import { INft } from '../utils/types';
 
 // Component definition
 export default function Home(): ReactElement {
+
+    // state definitions
+    const [nftList, setNftList] = useState<INft[]>(NFTData);
+
+    const onSearchChange = (searchKey: string): any => {
+        if (!searchKey.trim()) return setNftList(NFTData);
+
+        const filteredList = NFTData.filter((datum: INft): boolean => {
+            return datum.name.toLowerCase().includes(searchKey.toLowerCase());
+        });
+
+        setNftList(filteredList);
+    }
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <FocusedStatusBar background={COLORS.primary} />
@@ -18,11 +32,11 @@ export default function Home(): ReactElement {
             <View style={{ flex: 1 }}>
                 <View style={{ zIndex: 0 }}>
                     <FlatList
-                        data={NFTData}
+                        data={nftList}
                         renderItem={({ item }: { item: INft }): ReactElement => <NFTCard data={item} />}
                         keyExtractor={(item: INft) => item.id}
                         showsVerticalScrollIndicator={false}
-                        ListHeaderComponent={<HomeHeader />}
+                        ListHeaderComponent={<HomeHeader onChangeText={onSearchChange} />}
                     />
                 </View>
             </View>

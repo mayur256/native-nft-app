@@ -5,8 +5,13 @@ import { View, Text, StyleSheet, Image, TextInput } from 'react-native';
 // utils
 import { COLORS, FONTS, SIZES, assets } from '../../utils';
 
+// props type definition
+interface IProps {
+    onChangeText: (text: string) => void
+}
+
 // Component definition
-export default function HomeHeader(): ReactElement {
+export default function HomeHeader({ onChangeText }: IProps): ReactElement {
     return (
         <View style={styles.container}>
             {/** Logo and Profile avatar */}
@@ -51,7 +56,7 @@ export default function HomeHeader(): ReactElement {
                     <TextInput
                         placeholder='Search NFT'
                         style={{ flex: 1 }}
-                        onChange={e => console.log(e)}
+                        onChangeText={onChangeText}
                     />
                 </View>
             </View>

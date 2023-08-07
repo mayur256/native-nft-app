@@ -54,6 +54,7 @@ export default function Details({ route, navigation }: IProps): ReactElement {
                     </>
                 )}
             />
+            <View style={{ marginBottom: 70, backgroundColor: 'transparent' }} />
         </SafeAreaView>
     )
 }
